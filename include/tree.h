@@ -7,22 +7,22 @@
 #include <iostream>
 
 class PMTree {
-private:
+ private:
   struct node {
     char ch;
     std::vector<node*> next;
-    node(char c) : ch(c) {}
+    explicit node(char c) : ch(c) {}
   };
   node* root;
   std::vector<std::vector<char>> permutations;
   void add(node* current, std::vector<char> in);
-  void generatePermutationsRecursive(node* current, std::vector<char> currentPermutation);
+  void generatePermutationsRecursive(node* cur, std::vector<char> curPerm);
   void clearTreeRecursive(node* current);
   int countPermutations() const;
   bool getPermRecursive(node* current, int num, std::vector<char>& permutation);
 
-public:
-  PMTree(std::vector<char> in);
+ public:
+  explicit PMTree(std::vector<char> in);
   ~PMTree();
   std::vector<std::vector<char>> generatePermutations();
   std::vector<char> get1(int num) const;
