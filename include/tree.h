@@ -16,7 +16,7 @@ class PMTree {
   node* root;
   std::vector<std::vector<char>> permutations;
   void add(node* current, std::vector<char> in);
-  void generatePermutationsRecursive(node* cur, std::vector<char> curPerm);
+  void genPermRecursive(node* cur, std::vector<char> curPerm);
   void clearTreeRecursive(node* current);
   int countPermutations() const;
   bool getPermRecursive(node* current, int num, std::vector<char>& permutation);
