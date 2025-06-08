@@ -50,7 +50,7 @@ std::vector<std::vector<char>> PMTree::generatePermutations() {
     permutations.clear();
     for (node* child : root->next) {
         std::vector<char> initialPermutation;
-        generatePermutationsRecursive(child, initialPermutation);
+        genPermRecursive(child, initialPermutation);
     }
     return permutations;
 }
@@ -73,14 +73,14 @@ void PMTree::add(node* current, std::vector<char> in) {
     }
 }
 
-void PMTree::generatePermutationsRecursive(node* cur, std::vector<char> curPerm) {
+void PMTree::genPermRecursive(node* cur, std::vector<char> curPerm) {
     curPerm.push_back(cur->ch);
     if (cur->next.empty()) {
         permutations.push_back(curPerm);
         return;
     }
     for (node* child : cur->next) {
-        generatePermutationsRecursive(child, curPerm);
+        genPermRecursive(child, curPerm);
     }
 }
 
