@@ -7,6 +7,7 @@
 
 PMTree::PMTree(std::vector<char> in) : root(new node(' ')) {
     add(root, in);
+    generatePermutations();
 }
 
 PMTree::~PMTree() {
@@ -72,14 +73,14 @@ void PMTree::add(node* current, std::vector<char> in) {
     }
 }
 
-void PMTree::generatePermutationsRecursive(node* current, std::vector<char> currentPermutation) {
-    currentPermutation.push_back(current->ch);
-    if (current->next.empty()) {
-        permutations.push_back(currentPermutation);
+void PMTree::generatePermutationsRecursive(node* cur, std::vector<char> currPerm) {
+    curPerm.push_back(cur->ch);
+    if (cur->next.empty()) {
+        permutations.push_back(curPerm);
         return;
     }
-    for (node* child : current->next) {
-        generatePermutationsRecursive(child, currentPermutation);
+    for (node* child : cur->next) {
+        generatePermutationsRecursive(child, curPerm);
     }
 }
 
@@ -95,36 +96,33 @@ int PMTree::countPermutations() const {
     return permutations.size();
 }
 
-bool PMTree::getPermRecursive(node* current, int num, std::vector<char>& permutation) {
-    if (current == nullptr) return false;
-    if (current == root) return true;
+bool PMTree::getPermRecursive(node* cur, int num, std::vector<char>& perm) {
+    if (cur == nullptr) return false;
+    if (cur == root) return true;
 
-    permutation.push_back(current->ch);
-    if (current->next.empty()) {
+    perm.push_back(current->ch);
+    if (cur->next.empty()) {
         if (num == 1) {
             return true;
-        }
-        else {
-            permutation.pop_back();
+        } else {
+            perm.pop_back();
             return false;
         }
     }
 
-    for (node* child : current->next) {
+    for (node* child : cur->next) {
         int count = countPermutations();
         if (num <= count) {
-            if (getPermRecursive(child, num, permutation)) {
+            if (getPermRecursive(child, num, perm)) {
                 return true;
+            } else {
             }
-            else {
-            }
-        }
-        else {
+        } else {
             num -= count;
         }
     }
 
-    permutation.pop_back();
+    perm.pop_back();
     return false;
 }
 
