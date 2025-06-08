@@ -41,10 +41,14 @@ int main() {
     int t3 = end3 - begin3;
     std::cout << "t p1: " << t1 << " t p2: " << t2 << " t p3: " << t3 << '\n';
 
-    int rand_num1 = rand_r()/permutations1.size();
-    int rand_num2 = rand_r() / permutations2.size();
-    int rand_num3 = rand_r() / permutations3.size();
+    unsigned int seed1 = 12345;
+    unsigned int seed2 = 67890;
+    unsigned int seed3 = 13579;
 
+    int rand_num1 = (rand_r(&seed1) % permutations1) + 1;
+    int rand_num2 = (rand_r(&seed2) % permutations2) + 1;
+    int rand_num3 = (rand_r(&seed3) % permutations3) + 1;
+        
     int begin1_1 = clock();
     std::vector<char> rand1_1 = getPerm1(tree1, rand_num1);
     int end1_1 = clock();
