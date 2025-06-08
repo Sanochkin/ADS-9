@@ -73,7 +73,7 @@ void PMTree::add(node* current, std::vector<char> in) {
     }
 }
 
-void PMTree::generatePermutationsRecursive(node* cur, std::vector<char> currPerm) {
+void PMTree::generatePermutationsRecursive(node* cur, std::vector<char> curPerm) {
     curPerm.push_back(cur->ch);
     if (cur->next.empty()) {
         permutations.push_back(curPerm);
@@ -100,7 +100,7 @@ bool PMTree::getPermRecursive(node* cur, int num, std::vector<char>& perm) {
     if (cur == nullptr) return false;
     if (cur == root) return true;
 
-    perm.push_back(current->ch);
+    perm.push_back(cur->ch);
     if (cur->next.empty()) {
         if (num == 1) {
             return true;
