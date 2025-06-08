@@ -48,7 +48,7 @@ int main() {
     int rand_num1 = (rand_r(&seed1) % permutations1) + 1;
     int rand_num2 = (rand_r(&seed2) % permutations2) + 1;
     int rand_num3 = (rand_r(&seed3) % permutations3) + 1;
-        
+
     int begin1_1 = clock();
     std::vector<char> rand1_1 = getPerm1(tree1, rand_num1);
     int end1_1 = clock();
